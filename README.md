@@ -13,15 +13,19 @@ This is lab1report.
 • Remove an element by (lst.remove(3)):
 
 - index for lists
-
 - key for dictionaries - value for sets value
+
 • Access:
+
 - size (lst.size())
 - is member (lst.member(3))
 - reverse (lst.reverse() (if applicable)
+
 • Conversion from/to built-in list :
+
 - from_list (lst.from_list([12, 99, 37]))
 - to_list (lst.to_list())
+
 • Filter data structure by specific predicate (lst.filter(is_even))
 • Map1 structure by specific function (lst.map(increment))
 • Reduce2 – process structure elements to build a return value by specific functions(lst.reduce(sum))
