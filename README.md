@@ -13,7 +13,7 @@ This is lab1report.
 • Remove an element by (lst.remove(3)):
 
 - index for lists
-- 
+
 - key for dictionaries - value for sets value
 • Access:
 - size (lst.size())
