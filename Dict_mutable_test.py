@@ -9,8 +9,6 @@ my_entry1 = Entry(3, 4)
 my_entry2 = Entry(5, 6)
 my_entry3 = Entry(7, 8)
 
-
-
 class TestMutabledict(unittest.TestCase):
     def test_dict_add(self):
         T = []
@@ -24,7 +22,7 @@ class TestMutabledict(unittest.TestCase):
         self.assertEqual(dict.dict_to_list(), [4, 8, 6])
 
     def test_dict_remove(self):
-        T = [my_entry1,my_entry3,my_entry2]
+        T = [my_entry1, my_entry3, my_entry2]
         dict = Dict(T, 3)
         self.assertEqual(dict.dict_to_list(), [4, 8, 6])
         dict.dict_remove(my_entry3)
@@ -44,19 +42,19 @@ class TestMutabledict(unittest.TestCase):
         self.assertEqual(dict.dict_size(), 2)
 
     def test_dict_to_list(self):
-        T = [my_entry1,my_entry3,my_entry2]
+        T = [my_entry1, my_entry3, my_entry2]
         dict = Dict(T, 3)
         self.assertEqual(dict.dict_to_list(), [4, 8, 6])
 
     def test_dict_find(self):
-        T = [my_entry1,my_entry3,my_entry2]
+        T = [my_entry1, my_entry3, my_entry2]
         dict = Dict(T, 3)
         self.assertEqual(dict.dict_find(my_entry1.key), 0)
         self.assertEqual(dict.dict_find(my_entry3.key), 1)
         self.assertEqual(dict.dict_find(my_entry2.key), 2)
 
     def test_dict_filter(self):
-        T = [my_entry1,my_entry3,my_entry2]
+        T = [my_entry1, my_entry3, my_entry2]
         dict = Dict(T, 3)
         dict.dict_filter(5)
         self.assertEqual(dict.dict_to_list(), [None, 8, 6])
@@ -90,9 +88,9 @@ class TestMutabledict(unittest.TestCase):
     def test_dict_concat(self):
         T = [my_entry1, my_entry3, my_entry2]
         dict = Dict(T, 3)
-        T1= [my_entry1, my_entry3]
+        T1 = [my_entry1, my_entry3]
         dict1 = Dict(T1, 2)
-        #dict1 = dict1.dict_to_list()
+        # dict1 = dict1.dict_to_list()
         dict.dict_concat(dict1)
         self.assertEqual(dict.dict_to_list(), [4, 8, 6, 4, 8])
 
@@ -106,8 +104,6 @@ class TestMutabledict(unittest.TestCase):
             dict = Dict()
             dict = dict.dict_from_list(e)
             self.assertEqual(dict.dict_to_list(), [i.value for i in e])
-
-
 
 if __name__ == '__main__':
     unittest.main()
