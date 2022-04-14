@@ -106,6 +106,6 @@ class TestMutabledict(unittest.TestCase):
             dict = dict.dict_from_list(e)
             self.assertEqual(dict.dict_to_list(), [i.value for i in e])
 
-            
+
 if __name__ == '__main__':
     unittest.main()
