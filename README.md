@@ -23,7 +23,7 @@ This is lab1report.
 • Filter data structure by specific predicate (lst.filter(is_even))
 • Map1 structure by specific function (lst.map(increment))
 • Reduce2 – process structure elements to build a return value by specific functions(lst.reduce(sum))
-• Data structure should be an iterator3 in Python style 
+• Data structure should be an iterator3 in Python style
 • Data structure should be a monoid and implement empty and concat methods
 
 ## Project structure
@@ -64,5 +64,6 @@ This is lab1report.
 
 ## Design notes
 
-We create an Entry class to represent an element in the dictionary. 
-Hash maps are used to store and find elements and open addressing is used to handle conflicts.
+We create an Entry class to represent an element in the dictionary.
+Hash maps are used to store and find elements and open addressing 
+is used to handle conflicts.
