@@ -13,18 +13,18 @@ class Dict(object):
             self.hashTable = [None for i in range(size)]
         else:
             self.hashTable = hashTable
-        #Dictionary size
+        # Dictionary size
         self.size = size
         # Used to record the current position
         self.current = 0
 
-    # Hash mapping, where the key of a dictionary element is mapped to an address
+    # Hash mapping
     def hash_map(self, k, i):
         return (k % self.size + i * (1 + k % (self.size - 2))) % self.size
 
-    # Add a new element. If a collision occurs, use linear probing in the open address method
+    # Add a new element
     def dict_add(self, item):
-        i=0
+        i = 0
         while i < self.size:
             j = self.hash_map(item.key, i)
             if self.hashTable[j] is None:
@@ -103,7 +103,7 @@ class Dict(object):
             else:
                 i += 1
 
-    # Reduce – process structure elements to build a return value by specific functions
+    # Reduce 
     def dict_reduce(self, f, initial_state):
         state = initial_state
         i = 0
@@ -133,7 +133,7 @@ class Dict(object):
         if self.current < self.size:
             item = self.hashTable[self.current]
             self.current += 1
-            #print(item.key)
+            # print(item.key)
             return item
         else:
             raise StopIteration
