@@ -1,6 +1,6 @@
 #Author: Fan Yuxin, Weng Wenchao
 import unittest
-from Dict import *
+from Dict_mutable import *
 from hypothesis import given
 import hypothesis.strategies as st
 
