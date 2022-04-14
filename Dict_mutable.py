@@ -103,7 +103,7 @@ class Dict(object):
             else:
                 i += 1
 
-    # Reduce 
+    # Reduce
     def dict_reduce(self, f, initial_state):
         state = initial_state
         i = 0
