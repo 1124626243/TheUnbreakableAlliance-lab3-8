@@ -1,4 +1,4 @@
-#Author: Fan Yuxin, Weng Wenchao
+# Author: Fan Yuxin, Weng Wenchao
 import unittest
 from Dict_mutable import *
 from hypothesis import given
@@ -8,6 +8,7 @@ import hypothesis.strategies as st
 my_entry1 = Entry(3, 4)
 my_entry2 = Entry(5, 6)
 my_entry3 = Entry(7, 8)
+
 
 class TestMutabledict(unittest.TestCase):
     def test_dict_add(self):
@@ -105,5 +106,6 @@ class TestMutabledict(unittest.TestCase):
             dict = dict.dict_from_list(e)
             self.assertEqual(dict.dict_to_list(), [i.value for i in e])
 
+            
 if __name__ == '__main__':
     unittest.main()
