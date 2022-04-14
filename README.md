@@ -11,7 +11,9 @@ This is lab1report.
 • Add a new element  (lst.add(3))
 • Set an element with specific index / key (lst.set(1, 3)) if applicable.
 • Remove an element by (lst.remove(3)):
+
 - index for lists
+- 
 - key for dictionaries - value for sets value
 • Access:
 - size (lst.size())
@@ -65,5 +67,5 @@ This is lab1report.
 ## Design notes
 
 We create an Entry class to represent an element in the dictionary.
-Hash maps are used to store and find elements and open addressing 
-is used to handle conflicts.
+Hash maps are used to store and find elements and open addressing
+ is used to handle conflicts.
