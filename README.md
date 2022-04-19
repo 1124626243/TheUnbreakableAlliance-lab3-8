@@ -60,8 +60,11 @@ This is lab1report.
 - Wen Wenchao(285404190@qq.com) -- Dict_mutable.py
 
 ## Changelog
-
-- 13.04.2022 - 1
+- 19.04.2022 - 2
+- Wen Wenchao fix `Dict_mutable_test.py`.
+- 19.04.2022 - 1
+- Fan Yuxin fix `Dict_mutable.py`.
+- 13.04.2022 - 2
 - Wen Wenchao upload `Dict_mutable_test.py`.
 - 13.04.2022 - 1
 - Fan Yuxin upload `Dict_mutable.py`.
