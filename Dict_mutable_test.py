@@ -1,8 +1,7 @@
 # Author: Fan Yuxin, Weng Wenchao
 import unittest
 from Dict_mutable import *
-from hypothesis import given
-import hypothesis.strategies as st
+
 
 my_entry1 = Entry(3, 4)
 my_entry2 = Entry(5, 6)
