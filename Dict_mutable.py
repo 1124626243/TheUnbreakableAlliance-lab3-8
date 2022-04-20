@@ -27,8 +27,7 @@ class Dict(object):
                 j = (j + 1) % self.len
                 i += 1
                 if i == self.len:
-                    print("Failed to insert 
-                          because hashTable is full")
+                    print("Failed to insert because hashTable is full")
                     break
             self.hashTable[j] = item
             self.dict_size += 1
