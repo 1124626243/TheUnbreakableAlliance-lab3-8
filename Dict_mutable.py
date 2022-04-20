@@ -27,7 +27,8 @@ class Dict(object):
                 j = (j + 1) % self.len
                 i += 1
                 if i == self.len:
-                    print("Failed to insert because hashTable is full")
+                    print("Failed to insert 
+                          because hashTable is full")
                     break
             self.hashTable[j] = item
             self.dict_size += 1
@@ -127,7 +128,8 @@ class Dict(object):
         return Next(self.hashTable)
 
 
-'''To define a multi-iteration type, __iter__ is required to return a new iterator,
+'''To define a multi-iteration type,
+__iter__ is required to return a new iterator,
 not self, that is, not its own iterator.'''
 
 
