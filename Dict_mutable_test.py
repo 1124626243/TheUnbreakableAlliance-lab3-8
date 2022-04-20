@@ -25,7 +25,7 @@ class TestMutabledict(unittest.TestCase):
         dict.add(my_entry1)
         self.assertEqual(dict.to_list(), {3: 4})
         dict.add(my_entry2)
-        self.assertEqual(dict.to_list(), {3: 4,5: 6})
+        self.assertEqual(dict.to_list(), {3: 4, 5: 6})
         dict.add(my_entry3)
         self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8})
 
@@ -70,7 +70,7 @@ class TestMutabledict(unittest.TestCase):
         dict.add(my_entry2)
         dict.add(my_entry3)
         dict.add(my_entry10)
-        dict.filter(lambda e:e % 2 == 1)
+        dict.filter(lambda e: e % 2 == 1)
         self.assertEqual(dict.to_list(), {8: 9})
 
     def test_map(self):
@@ -113,7 +113,8 @@ class TestMutabledict(unittest.TestCase):
         dict1.add(my_entry11)
         dict1.add(my_entry12)
         dict.concat(dict1)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8, 8: 9, 14: 15, 15: 16})
+        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8,
+                                          8: 9, 14: 15, 15: 16})
 
     def test_to_list(self):
         dict = Dict()
@@ -141,7 +142,8 @@ class TestMutabledict(unittest.TestCase):
         dict1 = dict1.from_list(test_data1)
         self.assertEqual(dict1.to_list(), {0: 0, 1000: 0})
 
-    @given(st.dictionaries(keys=st.integers(min_value=0), values=st.integers(min_value=0)))
+    @given(st.dictionaries(keys=st.integers(min_value=0), 
+                           values=st.integers(min_value=0)))
     def test_python_len_and_list_size_equality(self, a):
         dict = Dict()
         dict = dict.from_list(a)
