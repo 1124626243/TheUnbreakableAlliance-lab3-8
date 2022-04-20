@@ -142,7 +142,7 @@ class TestMutabledict(unittest.TestCase):
         dict1 = dict1.from_list(test_data1)
         self.assertEqual(dict1.to_list(), {0: 0, 1000: 0})
 
-    @given(st.dictionaries(keys=st.integers(min_value=0), 
+    @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
     def test_python_len_and_list_size_equality(self, a):
         dict = Dict()
