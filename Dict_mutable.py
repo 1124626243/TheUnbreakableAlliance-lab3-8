@@ -136,7 +136,8 @@ class Dict:
         self.hashTable = [None for i in range(self.len)]
 
     # Join two dictionaries, If the key is repeated,
-    # the following dictionary element overrides the preceding dictionary element
+    # the following dictionary element overrides
+    #  the preceding dictionary element
     def concat(self, dict):
         self.dict_size += dict.size()
         self.len += dict.len
