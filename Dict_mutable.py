@@ -6,7 +6,7 @@ class Entry:
 
 
 # Defining dictionary class
-class Dict(object):
+class Dict:
     def __init__(self):
         # The length of the hashTable
         self.len = 1000
@@ -15,31 +15,62 @@ class Dict(object):
         # Dictionary size
         self.dict_size = 0
 
+    # getting value by key
+    def get(self, key):
+        if self.find(key) != -1:
+            return self.hashTable[self.find(key)].value
+        else:
+            print("The key element does not exist")
+
+    # Is a member of a dictionary, 1 means existence, 0 means non-existence
+    def member(self, key):
+        if self.find(key) != -1:
+            return 1
+        else:
+            return 0
+
     # Add a new element，use linear detection for conflicts
     def add(self, item):
-        j = item.key % self.len
-        if self.hashTable[j] is None:
-            self.hashTable[j] = item
-            self.dict_size += 1
-        else:
-            i = 0
-            while self.hashTable[j] is not None:
-                j = (j + 1) % self.len
-                i += 1
-                if i == self.len:
-                    print("Failed to insert because hashTable is full")
-                    break
-            self.hashTable[j] = item
-            self.dict_size += 1
+        if item is not None:
+            j = item.key % self.len
+            if self.hashTable[j] is None:
+                self.hashTable[j] = item
+                self.dict_size += 1
+            else:
+                i = 0
+                while self.hashTable[j] is not None:
+                    j = (j + 1) % self.len
+                    i += 1
+                    if i == self.len:
+                        print("Failed to insert "
+                              "because hashTable is full")
+                        break
+                self.hashTable[j] = item
+                self.dict_size += 1
 
-    # Find the element
+    # Find the hash table position of the element
     def find(self, key):
-        return key % self.len
+        j = key % self.len
+        if self.hashTable[j] is not None:
+            if self.hashTable[j].key == key:
+                return j
+            else:
+                i = 0
+                while self.hashTable[j] != key:
+                    j = (j + 1) % self.len
+                    i += 1
+                    if i == self.len:
+                        print("There is no element "
+                              "with the value key in the dictionary")
+                        return -1
+                        break
+                return j
+        return -1
 
     # Remove an element by key for dictionaries
-    def remove(self, item):
-        index = self.find(item.key)
-        if self.hashTable[index] is not None:
+    def remove(self, key):
+        if self.find(key) != -1:
+            index = self.find(key)
             self.hashTable[index] = None
             self.dict_size -= 1
         else:
@@ -61,11 +92,9 @@ class Dict(object):
 
     # Conversion from built-in list
     def from_list(self, a):
-        dict1 = Dict()
         for key, value in a.items():
             x = Entry(key, value)
-            dict1.add(x)
-        return dict1
+            self.add(x)
 
     # Filter dictionary by specific predicate
     def filter(self, p):
@@ -106,11 +135,19 @@ class Dict(object):
     def empty(self):
         self.hashTable = [None for i in range(self.len)]
 
-    # Join two dictionaries
+    # Join two dictionaries, If the key is repeated,
+    # the following dictionary element overrides the preceding dictionary element
     def concat(self, dict):
         self.dict_size += dict.size()
         self.len += dict.len
-        self.hashTable += dict.hashTable
+        d1 = self.hashTable
+        self.hashTable = [None for i in range(self.len)]
+        for x in d1:
+            if x is not None:
+                self.add(x)
+        for y in dict:
+            if y is not None:
+                self.add(y)
 
     # Make dictionaries iterable
     '''def __next__(self):

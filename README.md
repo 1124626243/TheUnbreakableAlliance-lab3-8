@@ -39,18 +39,20 @@ This is lab1report.
 
 ## Features
 
-- hash_map(k, i)
-- dict_add(item)
-- dict_find(k)
-- dict_remove(item)
-- dict_size( )
-- dict_to_list( )
-- dict_from_list(a)
-- dict_filter(k)
-- dict_map(f)
-- dict_reduce(f, initial_state)
-- dict_empty( )
-- dict_concat(dict)
+- map(f)
+- add(item)
+- find(key)
+- remove(key)
+- size( )
+- to_list( )
+- from_list(a)
+- filter(p)
+- map(f)
+- reduce(f, initial_state)
+- empty( )
+- concat(dict)
+- get(key)
+- member(key)
 - __next__( )
 - __iter__( )
 
@@ -61,14 +63,20 @@ This is lab1report.
 
 ## Changelog
 
+- 24.04.2022 - 2
+- Wen Wenchao added `test_get()`, `test_member()`, 
+- changed  `test_find()`, `test_remove()`.
+- 24.04.2022 - 1
+- Fan Yuxin add `get(key)`, `member(key)`, 
+- change  `find(key)`, `remove(key)`,`from_list()`,`add(item)``concat(dict)`.
 - 19.04.2022 - 2
-- Wen Wenchao fix `Dict_mutable_test.py`.
+- Wen Wenchao fixed `Dict_mutable_test.py`.
 - 19.04.2022 - 1
-- Fan Yuxin fix `Dict_mutable.py`.
+- Fan Yuxin fixed `Dict_mutable.py`.
 - 13.04.2022 - 2
-- Wen Wenchao upload `Dict_mutable_test.py`.
+- Wen Wenchao uploaded `Dict_mutable_test.py`.
 - 13.04.2022 - 1
-- Fan Yuxin upload `Dict_mutable.py`.
+- Fan Yuxin uploaded `Dict_mutable.py`.
 - 11.04.2022 - 0
   - Initial
 
@@ -76,4 +84,23 @@ This is lab1report.
 
 We create an Entry class to represent an element in the dictionary.
 Hash maps are used to store and find elements and open addressing
- is used to handle conflicts.
+is used to handle conflicts. The internal hash table has a table length of 1000.
+ 
+ ### Advantages and disadvantages of unittest
+
+ * Advantages：
+   * Support automated testing
+   * Secondary development is convenient
+   * Organize test cases together by class
+ * Disadvantages：
+   * Must be written in TestCase subclass
+   * Must write test method
+   * Difficult to expand
+
+ ### Advantages and disadvantages of PBT tests
+
+ * Advantages：
+   * Check with automatically generated input data to ensure enough test cases
+   * Allows developers to increase test coverage and effectively save time
+ * Disadvantages：
+   * Not covering all examples

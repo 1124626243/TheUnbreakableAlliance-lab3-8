@@ -1,11 +1,10 @@
-# Author: Fan Yuxin, Weng Wenchao
 import unittest
-from Dict_mutable import *
+from Dict_mutable import Entry, Dict
 from hypothesis import given
 import hypothesis.strategies as st
 
 my_entry1 = Entry(3, 4)
-my_entry2 = Entry(5, 6)
+my_entry2 = Entry(1004, 6)
 my_entry3 = Entry(7, 8)
 my_entry4 = Entry(3, 4)
 my_entry5 = Entry(5, 6)
@@ -18,28 +17,28 @@ my_entry11 = Entry(14, 15)
 my_entry12 = Entry(15, 16)
 
 
-class TestMutabledict(unittest.TestCase):
+class TestMutableDict(unittest.TestCase):
     def test_add(self):
         dict = Dict()
         self.assertEqual(dict.to_list(), {})
         dict.add(my_entry1)
         self.assertEqual(dict.to_list(), {3: 4})
         dict.add(my_entry2)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6})
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6})
         dict.add(my_entry3)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8})
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
 
     def test_remove(self):
         dict = Dict()
         dict.add(my_entry1)
         dict.add(my_entry2)
         dict.add(my_entry3)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8})
-        dict.remove(my_entry3)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6})
-        dict.remove(my_entry2)
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
+        dict.remove(my_entry3.key)
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6})
+        dict.remove(my_entry2.key)
         self.assertEqual(dict.to_list(), {3: 4})
-        dict.remove(my_entry1)
+        dict.remove(my_entry1.key)
         self.assertEqual(dict.to_list(), {})
 
     def test_size(self):
@@ -61,7 +60,7 @@ class TestMutabledict(unittest.TestCase):
         dict.add(my_entry2)
         dict.add(my_entry3)
         self.assertEqual(dict.find(my_entry1.key), 3)
-        self.assertEqual(dict.find(my_entry2.key), 5)
+        self.assertEqual(dict.find(my_entry2.key), 4)
         self.assertEqual(dict.find(my_entry3.key), 7)
 
     def test_filter(self):
@@ -113,7 +112,7 @@ class TestMutabledict(unittest.TestCase):
         dict1.add(my_entry11)
         dict1.add(my_entry12)
         dict.concat(dict1)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8,
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8,
                                           8: 9, 14: 15, 15: 16})
 
     def test_to_list(self):
@@ -121,7 +120,7 @@ class TestMutabledict(unittest.TestCase):
         dict.add(my_entry1)
         dict.add(my_entry2)
         dict.add(my_entry3)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8})
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
 
     def test_from_list(self):
         '''test_data = [
@@ -133,20 +132,43 @@ class TestMutabledict(unittest.TestCase):
             dict = dict.from_list(e)
             self.assertEqual(dict.to_list(), [i.value for i in e])'''
 
-        test_data = {3: 4, 5: 6, 7: 8}
+        test_data = {3: 4, 1004: 6, 7: 8}
         dict = Dict()
-        dict = dict.from_list(test_data)
-        self.assertEqual(dict.to_list(), {3: 4, 5: 6, 7: 8})
+        dict.from_list(test_data)
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
         test_data1 = {0: 0, 1000: 0}
         dict1 = Dict()
-        dict1 = dict1.from_list(test_data1)
+        dict1.from_list(test_data1)
         self.assertEqual(dict1.to_list(), {0: 0, 1000: 0})
+
+    def test_get(self):
+        dict = Dict()
+        dict.add(my_entry1)
+        dict.add(my_entry2)
+        dict.add(my_entry3)
+        self.assertEqual(dict.get(3), 4)
+
+    def test_member(self):
+        dict = Dict()
+        dict.add(my_entry1)
+        dict.add(my_entry2)
+        dict.add(my_entry3)
+        self.assertEqual(dict.member(3), 1)
+        self.assertEqual(dict.member(100), 0)
+
+    @given(st.dictionaries(keys=st.integers(min_value=0),
+                           values=st.integers(min_value=0)))
+    def test_from_list_to_list_equality(self, a):
+        dict = Dict()
+        dict.from_list(a)
+        b = dict.to_list()
+        self.assertEqual(a, b)
 
     @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
     def test_python_len_and_list_size_equality(self, a):
         dict = Dict()
-        dict = dict.from_list(a)
+        dict.from_list(a)
         self.assertEqual(dict.size(), len(a))
 
 
