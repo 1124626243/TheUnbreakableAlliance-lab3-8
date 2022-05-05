@@ -151,16 +151,6 @@ class Dict:
                 self.add(y)
 
     # Make dictionaries iterable
-    '''def __next__(self):
-        if self.current < self.dict_size:
-            x = self.current
-            item = self.hashTable[x]
-            self.current += 1
-            # print(item.key)
-            return item
-        else:
-            raise StopIteration'''
-
     def __iter__(self):
         return Next(self.hashTable)
 

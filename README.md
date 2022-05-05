@@ -63,6 +63,9 @@ This is lab1 report.
 
 ## Changelog
 
+- 05.05.2022 - 1
+- Fan Yuxin add `test_monoid_identity(a)`,
+- Remove dead code and commented code.
 - 24.04.2022 - 2
 - Wen Wenchao added `test_get()`, `test_member()`,
 - changed  `test_find()`, `test_remove()`.

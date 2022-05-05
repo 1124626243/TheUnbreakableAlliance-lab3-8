@@ -117,21 +117,13 @@ class TestMutableDict(unittest.TestCase):
 
     def test_to_list(self):
         dict = Dict()
+        self.assertEqual(dict.to_list(), {})
         dict.add(my_entry1)
         dict.add(my_entry2)
         dict.add(my_entry3)
         self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
 
     def test_from_list(self):
-        '''test_data = [
-            [my_entry1],
-            [my_entry1, my_entry3, my_entry2]
-        ]
-        for e in test_data:
-            dict = Dict()
-            dict = dict.from_list(e)
-            self.assertEqual(dict.to_list(), [i.value for i in e])'''
-
         test_data = {3: 4, 1004: 6, 7: 8}
         dict = Dict()
         dict.from_list(test_data)
@@ -170,6 +162,24 @@ class TestMutableDict(unittest.TestCase):
         dict = Dict()
         dict.from_list(a)
         self.assertEqual(dict.size(), len(a))
+
+    @given(st.dictionaries(keys=st.integers(min_value=0),
+                           values=st.integers(min_value=0)))
+    def test_monoid_identity(self, a):
+        dict = Dict()
+        dict.from_list(a)
+        empty_dict = Dict()
+        dict.concat(empty_dict)
+        dict1 = Dict()
+        dict1.from_list(a)
+        self.assertEqual(dict.to_list(), dict1.to_list())
+        dict2 = Dict()
+        dict2.from_list(a)
+        empty_dict2 = Dict()
+        empty_dict2.concat(dict2)
+        dict3 = Dict()
+        dict3.from_list(a)
+        self.assertEqual(empty_dict2.to_list(), dict3.to_list())
 
 
 if __name__ == '__main__':
