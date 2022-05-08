@@ -15,6 +15,7 @@ my_entry9 = Entry(7, 8)
 my_entry10 = Entry(8, 9)
 my_entry11 = Entry(14, 15)
 my_entry12 = Entry(15, 16)
+my_entry13 = Entry(3, 5)
 
 
 class TestMutableDict(unittest.TestCase):
@@ -27,6 +28,8 @@ class TestMutableDict(unittest.TestCase):
         self.assertEqual(dict.to_list(), {3: 4, 1004: 6})
         dict.add(my_entry3)
         self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
+        dict.add(my_entry13)
+        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 3: 5, 7: 8})
 
     def test_remove(self):
         dict = Dict()
@@ -111,8 +114,8 @@ class TestMutableDict(unittest.TestCase):
         dict1.add(my_entry10)
         dict1.add(my_entry11)
         dict1.add(my_entry12)
-        dict.concat(dict1)
-        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8,
+        x = dict.concat(dict1)
+        self.assertEqual(x.to_list(), {3: 4, 1004: 6, 7: 8,
                                           8: 9, 14: 15, 15: 16})
 
     def test_to_list(self):
@@ -166,20 +169,35 @@ class TestMutableDict(unittest.TestCase):
     @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
     def test_monoid_identity(self, a):
+        #  a•e = a
         dict = Dict()
         dict.from_list(a)
         empty_dict = Dict()
-        dict.concat(empty_dict)
+        x = dict.concat(empty_dict)
+        self.assertEqual(dict.to_list(), x.to_list())
+        # e•a = a
+        y = empty_dict.concat(dict)
+        self.assertEqual(dict.to_list(), y.to_list())
+
+    @given(st.dictionaries(keys=st.integers(min_value=0),
+                           values=st.integers(min_value=0)),
+           st.dictionaries(keys=st.integers(min_value=0),
+                           values=st.integers(min_value=0)),
+           st.dictionaries(keys=st.integers(min_value=0),
+                           values=st.integers(min_value=0))
+           )
+    def test_monoid_associativity(self, a, b, c):
         dict1 = Dict()
         dict1.from_list(a)
-        self.assertEqual(dict.to_list(), dict1.to_list())
         dict2 = Dict()
-        dict2.from_list(a)
-        empty_dict2 = Dict()
-        empty_dict2.concat(dict2)
+        dict2.from_list(b)
         dict3 = Dict()
-        dict3.from_list(a)
-        self.assertEqual(empty_dict2.to_list(), dict3.to_list())
+        dict3.from_list(c)
+        # (a•b)•c
+        x = dict1.concat(dict2).concat(dict3)
+        # a•(b•c)
+        y = dict1.concat(dict2.concat(dict3))
+        self.assertEqual(x.to_list(), y.to_list())
 
 
 if __name__ == '__main__':

@@ -63,6 +63,9 @@ This is lab1 report.
 
 ## Changelog
 
+- 08.05.2022 - 1
+- Fan Yuxin add `test_monoid_associativity(a)`,
+- Modify `test_monoid_identity(a)`,`concat(dict)`
 - 05.05.2022 - 1
 - Fan Yuxin add `test_monoid_identity(a)`,
 - Remove dead code and commented code.

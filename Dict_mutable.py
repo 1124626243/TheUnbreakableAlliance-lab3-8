@@ -139,16 +139,17 @@ class Dict:
     # the following dictionary element overrides
     #  the preceding dictionary element
     def concat(self, dict):
-        self.dict_size += dict.size()
-        self.len += dict.len
-        d1 = self.hashTable
-        self.hashTable = [None for i in range(self.len)]
-        for x in d1:
+        new_dict = Dict()
+        new_dict.dict_size = self.dict_size + dict.size()
+        new_dict.len = self.len + dict.len
+        new_dict.hashTable = [None for i in range(new_dict.len)]
+        for x in self.hashTable:
             if x is not None:
-                self.add(x)
-        for y in dict:
+                new_dict.add(x)
+        for y in dict.hashTable:
             if y is not None:
-                self.add(y)
+                new_dict.add(y)
+        return new_dict
 
     # Make dictionaries iterable
     def __iter__(self):
@@ -173,7 +174,6 @@ class Next:
             x = self.current
             item = self.hashTable[x]
             self.current += 1
-            # print(item.key)
             return item
         else:
             raise StopIteration
