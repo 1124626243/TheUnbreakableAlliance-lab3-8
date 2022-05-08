@@ -15,7 +15,6 @@ my_entry9 = Entry(7, 8)
 my_entry10 = Entry(8, 9)
 my_entry11 = Entry(14, 15)
 my_entry12 = Entry(15, 16)
-my_entry13 = Entry(3, 5)
 
 
 class TestMutableDict(unittest.TestCase):
@@ -28,8 +27,6 @@ class TestMutableDict(unittest.TestCase):
         self.assertEqual(dict.to_list(), {3: 4, 1004: 6})
         dict.add(my_entry3)
         self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 7: 8})
-        dict.add(my_entry13)
-        self.assertEqual(dict.to_list(), {3: 4, 1004: 6, 3: 5, 7: 8})
 
     def test_remove(self):
         dict = Dict()
