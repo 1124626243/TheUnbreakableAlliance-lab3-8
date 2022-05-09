@@ -116,7 +116,7 @@ class TestMutableDict(unittest.TestCase):
         dict1.add(my_entry12)
         x = dict.concat(dict1)
         self.assertEqual(x.to_list(), {3: 4, 1004: 6, 7: 8,
-                                          8: 9, 14: 15, 15: 16})
+                                       8: 9, 14: 15, 15: 16})
 
     def test_to_list(self):
         dict = Dict()
