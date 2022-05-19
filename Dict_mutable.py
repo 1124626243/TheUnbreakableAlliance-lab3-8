@@ -5,7 +5,9 @@ optionalType = Union[int]
 
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
-    def __init__(self, key: optionalType, value: optionalType) -> None:
+    def __init__(self,
+                 key: Optional[optionalType],
+                 value: Optional[optionalType]) -> None:
         """
         Create an instance of Entry
         :param key: optionalType
