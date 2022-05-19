@@ -17,12 +17,12 @@ class Entry:
 class Dict:
     """ Mutable dictionary based on hash-map, open address implementation """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Create an instance of dictionary"""
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
-        self.hashTable = [None for i in range(self.len)]
+        self.hashTable: list[Any] = [None for i in range(self.len)]
         # Dictionary size
         self.dict_size = 0
 
@@ -49,10 +49,10 @@ class Dict:
         else:
             return 0
 
-    def add(self, item: 'Entry') -> None:
+    def add(self, item: Any) -> None:
         """
         Add a new element，use linear detection for conflicts
-        :param item: 'Entry'
+        :param item: Any
         :return: None
         """
         if item is not None:
@@ -192,20 +192,20 @@ class Dict:
         """
         self.hashTable = [None for i in range(self.len)]
 
-    def concat(self, dict: 'Dict') -> 'Dict':
+    def concat(self, dict_x: 'Dict') -> 'Dict':
         """
         Data structure should be a monoid and implement concat
-        :param dict: Dict
+        :param dict_x: Dict
         :return: Dict
         """
-        self.dict_size = self.dict_size + dict.size()
-        self.len = self.len + dict.len
+        self.dict_size = self.dict_size + dict_x.size()
+        self.len = self.len + dict_x.len
         d1 = self.hashTable
         self.hashTable = [None for i in range(self.len)]
         for x in d1:
             if x is not None:
                 self.add(x)
-        for y in dict.hashTable:
+        for y in dict_x.hashTable:
             if y is not None:
                 self.add(y)
         return self
