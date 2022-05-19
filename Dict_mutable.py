@@ -21,8 +21,8 @@ class Dict:
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
-        self.hashTable: list[Optional[Entry]] = [None
-                                                 for i in range(self.len)]
+        self.hashTable: list[Any] = [None
+                                     for i in range(self.len)]
         # Dictionary size
         self.dict_size = 0
 
