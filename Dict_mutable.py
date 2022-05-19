@@ -1,19 +1,13 @@
-from typing import Callable, Any, Optional, Union, Mapping, Dict
-
-optionalType = Union[str, int, float]
-mapType = Mapping[optionalType, optionalType]
-dictType = Dict[optionalType, optionalType]
+from typing import Callable, Any, Optional
 
 
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
-    def __init__(self,
-                 key: Optional[optionalType] = None,
-                 value: Optional[optionalType] = None) -> None:
+    def __init__(self, key: int, value: int) -> None:
         """
         Create an instance of Entry
-        :param key: optionalType
-        :param value: optionalType
+        :param key: int
+        :param value: int
         """
         self.key = key
         self.value = value
@@ -32,10 +26,10 @@ class Dict:
         # Dictionary size
         self.dict_size = 0
 
-    def get(self, key: optionalType) -> optionalType:
+    def get(self, key: int) -> int:
         """
         getting value by key
-        :param key: optionalType
+        :param key: int
         :return: int
         """
         if self.find(key) != -1:
@@ -44,10 +38,10 @@ class Dict:
             print("The key element does not exist")
             return -1
 
-    def member(self, key: optionalType) -> int:
+    def member(self, key: int) -> int:
         """
         Is a member of a dictionary, 1 means existence, 0 means non-existence
-        :param key: optionalType
+        :param key: int
         :return: int
         """
         if self.find(key) != -1:
@@ -78,10 +72,10 @@ class Dict:
                 self.hashTable[j] = item
                 self.dict_size += 1
 
-    def find(self, key: optionalType) -> int:
+    def find(self, key: int) -> int:
         """
         Find the hash table position of the element
-        :param key: optionalType
+        :param key: int
         :return: int
         """
         j = key % self.len
@@ -100,10 +94,10 @@ class Dict:
                 return j
         return -1
 
-    def remove(self, key: optionalType) -> None:
+    def remove(self, key: int) -> None:
         """
         Remove an element by key for dictionaries
-        :param key: optionalType
+        :param key: int
         :return: None
         """
         if self.find(key) != -1:
@@ -120,12 +114,12 @@ class Dict:
         """
         return self.dict_size
 
-    def to_list(self) -> dictType:
+    def to_list(self) -> dict[int, int]:
         """
         Conversion to built-in list
-        :return:dict[optionalType, optionalType]
+        :return:dict[int, int]
         """
-        res: dictType = {}
+        res = {}
         i = 0
         while i < self.len:
             if self.hashTable[i] is not None:
@@ -133,10 +127,10 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: mapType) -> None:
+    def from_list(self, a: dict[int, int]) -> None:
         """
         Conversion from built-in list
-        :param a: dict[optionalType, optionalType]
+        :param a: dict[int, int]
         :return: None
         """
         for key, value in a.items():
@@ -175,8 +169,8 @@ class Dict:
                 i += 1
 
     def reduce(self,
-               f: Callable[[Any, optionalType], Any],
-               initial_state: optionalType) -> optionalType:
+               f: Callable[[Any, int], Any],
+               initial_state: int) -> int:
         """
         Reduce process elements and build a value by the function
         :param f: Callable[[Any, int], Any]
