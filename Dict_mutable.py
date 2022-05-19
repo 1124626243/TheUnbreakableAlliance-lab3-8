@@ -1,6 +1,8 @@
-from typing import Callable, Any, Optional, Union
+from typing import Callable, Any, Optional, Union, Mapping, Dict
 
-optionalType = Union[int]
+optionalType = Union[str, int, float]
+mapType = Mapping[optionalType, optionalType]
+dictType = Dict[optionalType, optionalType]
 
 
 class Entry:
@@ -34,7 +36,7 @@ class Dict:
         """
         getting value by key
         :param key: optionalType
-        :return: optionalType
+        :return: int
         """
         if self.find(key) != -1:
             return self.hashTable[self.find(key)].value
@@ -53,7 +55,7 @@ class Dict:
         else:
             return 0
 
-    def add(self, item: Optional['Entry'] = None) -> None:
+    def add(self, item: Optional['Entry']) -> None:
         """
         Add a new element，use linear detection for conflicts
         :param item: Optional['Entry']
@@ -118,12 +120,12 @@ class Dict:
         """
         return self.dict_size
 
-    def to_list(self) -> dict[optionalType, optionalType]:
+    def to_list(self) -> dictType:
         """
         Conversion to built-in list
         :return:dict[optionalType, optionalType]
         """
-        res = {}
+        res: dictType = {}
         i = 0
         while i < self.len:
             if self.hashTable[i] is not None:
@@ -131,7 +133,7 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: dict[optionalType, optionalType] = None) -> None:
+    def from_list(self, a: mapType) -> None:
         """
         Conversion from built-in list
         :param a: dict[optionalType, optionalType]
