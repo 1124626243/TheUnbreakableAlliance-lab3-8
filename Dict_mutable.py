@@ -21,8 +21,8 @@ class Dict:
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
-        self.hashTable: list[Optional[Any]] = [None
-                                               for i in range(self.len)]
+        self.hashTable: list[Any] = [None
+                                     for i in range(self.len)]
         # Dictionary size
         self.dict_size = 0
 
@@ -239,7 +239,7 @@ class Next:
         """
         return self
 
-    def __next__(self) -> 'Entry':
+    def __next__(self) -> Optional['Entry']:
         """
         Implement next(self).
         :return: 'Entry'
