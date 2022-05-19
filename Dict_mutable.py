@@ -1,6 +1,7 @@
 from typing import Callable
 from typing import Any
 
+
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
     def __init__(self, key: int, value: int) -> None:
