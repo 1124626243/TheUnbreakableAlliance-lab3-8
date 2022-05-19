@@ -1,5 +1,5 @@
 from typing import Callable
-
+from typing import Any
 
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
@@ -35,6 +35,7 @@ class Dict:
             return self.hashTable[self.find(key)].value
         else:
             print("The key element does not exist")
+            return -1
 
     def member(self, key: int) -> int:
         """
@@ -125,7 +126,7 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: 'Dict') -> None:
+    def from_list(self, a: dict[int, int]) -> None:
         """
         Conversion from built-in list
         :param a: Dict
@@ -135,10 +136,10 @@ class Dict:
             x = Entry(key, value)
             self.add(x)
 
-    def filter(self, p: Callable[[any], any]) -> None:
+    def filter(self, p: Callable[[Any], Any]) -> None:
         """
         Filter dictionary by specific predicate
-        :param p:Callable[[any],any]
+        :param p:Callable[[Any],Any]
         :return: None
         """
         i = 0
@@ -152,10 +153,10 @@ class Dict:
                 else:
                     i += 1
 
-    def map(self, f: Callable[[any], any]) -> None:
+    def map(self, f: Callable[[Any], Any]) -> None:
         """
         Map structure by specific function
-        :param f: Callable[[any],any]
+        :param f: Callable[[Any], Any]
         :return: None
         """
         i = 0
@@ -166,10 +167,10 @@ class Dict:
             else:
                 i += 1
 
-    def reduce(self, f: Callable[[any], any], initial_state: int) -> int:
+    def reduce(self, f: Callable[[Any, int], Any], initial_state: int) -> int:
         """
         Reduce process elements and build a value by the function
-        :param f: Callable[[any],any]
+        :param f: Callable[[Any, int], Any]
         :param initial_state: int
         :return: int
         """
@@ -235,10 +236,10 @@ class Next:
         """
         return self
 
-    def __next__(self) -> 'Entry':
+    def __next__(self) -> int:
         """
         Implement next(self).
-        :return: 'Entry'
+        :return: int
         """
         if self.current < len(self.hashTable):
             x = self.current
