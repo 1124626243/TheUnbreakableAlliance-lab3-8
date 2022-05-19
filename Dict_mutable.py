@@ -1,10 +1,11 @@
-from typing import Callable
-from typing import Any
+from typing import Callable, Any, Union
+
+defineType = Union[str, int, float]
 
 
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
-    def __init__(self, key: int, value: int) -> None:
+    def __init__(self, key: defineType, value: defineType) -> None:
         """
         Create an instance of Entry
         :param key:int
@@ -26,7 +27,7 @@ class Dict:
         # Dictionary size
         self.dict_size = 0
 
-    def get(self, key: int) -> Any:
+    def get(self, key: defineType) -> defineType:
         """
         getting value by key
         :param key: int
@@ -38,7 +39,7 @@ class Dict:
             print("The key element does not exist")
             return -1
 
-    def member(self, key: int) -> int:
+    def member(self, key: defineType) -> int:
         """
         Is a member of a dictionary, 1 means existence, 0 means non-existence
         :param key: int
@@ -72,7 +73,7 @@ class Dict:
                 self.hashTable[j] = item
                 self.dict_size += 1
 
-    def find(self, key: int) -> int:
+    def find(self, key: defineType) -> int:
         """
         Find the hash table position of the element
         :param key: int
@@ -94,7 +95,7 @@ class Dict:
                 return j
         return -1
 
-    def remove(self, key: int) -> None:
+    def remove(self, key: defineType) -> None:
         """
         Remove an element by key for dictionaries
         :param key: int
@@ -114,7 +115,7 @@ class Dict:
         """
         return self.dict_size
 
-    def to_list(self) -> dict[int, int]:
+    def to_list(self) -> dict[defineType, defineType]:
         """
         Conversion to built-in list
         :return:dict[int,int]
@@ -127,7 +128,7 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: dict[int, int]) -> None:
+    def from_list(self, a: dict[defineType, defineType]) -> None:
         """
         Conversion from built-in list
         :param a: Dict
@@ -222,7 +223,7 @@ class Next:
     """To define a multi-iteration type,
     __iter__ is required to return a new iterator,
     not self, that is, not its own iterator."""
-    def __init__(self, hashTable: list[int]) -> None:
+    def __init__(self, hashTable: list[Any]) -> None:
         """
         Create an instance of Next
         :param hashTable: list[int]
