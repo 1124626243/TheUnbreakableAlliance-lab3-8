@@ -23,7 +23,8 @@ class Dict:
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
-        self.hashTable: list[Optional['Entry']] = [None for i in range(self.len)]
+        self.hashTable: list[Optional['Entry']]\
+            = [None for i in range(self.len)]
         # Dictionary size
         self.dict_size = 0
 
@@ -169,7 +170,9 @@ class Dict:
             else:
                 i += 1
 
-    def reduce(self, f: Callable[[Any, optionalType], Any], initial_state: optionalType) -> optionalType:
+    def reduce(self,
+               f: Callable[[Any, optionalType], Any],
+               initial_state: optionalType) -> optionalType:
         """
         Reduce process elements and build a value by the function
         :param f: Callable[[Any, int], Any]
