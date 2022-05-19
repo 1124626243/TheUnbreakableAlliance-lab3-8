@@ -150,7 +150,7 @@ class TestMutableDict(unittest.TestCase):
 
     @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
-    def test_from_list_to_list_equality(self, a) -> None:
+    def test_from_list_to_list_equality(self, a: dict[int, int]) -> None:
         dict_x = Dict()
         dict_x.from_list(a)
         b = dict_x.to_list()
@@ -158,14 +158,14 @@ class TestMutableDict(unittest.TestCase):
 
     @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
-    def test_python_len_and_list_size_equality(self, a) -> None:
+    def test_python_len_and_list_size_equality(self, a: dict[int, int]) -> None:
         dict_x = Dict()
         dict_x.from_list(a)
         self.assertEqual(dict_x.size(), len(a))
 
     @given(st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0)))
-    def test_monoid_identity(self, a) -> None:
+    def test_monoid_identity(self, a: dict[int, int]) -> None:
         #  a•e = a
         dict_x = Dict()
         dict_x.from_list(a)
@@ -183,7 +183,7 @@ class TestMutableDict(unittest.TestCase):
            st.dictionaries(keys=st.integers(min_value=0),
                            values=st.integers(min_value=0))
            )
-    def test_monoid_associativity(self, a, b, c) -> None:
+    def test_monoid_associativity(self, a: dict[int, int], b: dict[int, int], c: dict[int, int]) -> None:
         dict1 = Dict()
         dict1.from_list(a)
         dict2 = Dict()

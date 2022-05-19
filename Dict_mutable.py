@@ -26,11 +26,11 @@ class Dict:
         # Dictionary size
         self.dict_size = 0
 
-    def get(self, key: int) -> int:
+    def get(self, key: int) -> Any:
         """
         getting value by key
         :param key: int
-        :return: int
+        :return: Any
         """
         if self.find(key) != -1:
             return self.hashTable[self.find(key)].value
