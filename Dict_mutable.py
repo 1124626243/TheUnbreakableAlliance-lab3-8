@@ -6,8 +6,8 @@ optionalType = Union[int]
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
     def __init__(self,
-                 key: Optional[optionalType],
-                 value: Optional[optionalType]) -> None:
+                 key: Optional[optionalType] = None,
+                 value: Optional[optionalType] = None) -> None:
         """
         Create an instance of Entry
         :param key: optionalType
@@ -53,7 +53,7 @@ class Dict:
         else:
             return 0
 
-    def add(self, item: Optional['Entry']) -> None:
+    def add(self, item: Optional['Entry'] = None) -> None:
         """
         Add a new element，use linear detection for conflicts
         :param item: Optional['Entry']
@@ -131,7 +131,7 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: dict[optionalType, optionalType]) -> None:
+    def from_list(self, a: dict[optionalType, optionalType] = None) -> None:
         """
         Conversion from built-in list
         :param a: dict[optionalType, optionalType]
