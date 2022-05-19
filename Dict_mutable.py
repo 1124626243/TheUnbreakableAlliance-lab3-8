@@ -1,13 +1,23 @@
-# Defines a dictionary element that consists of keywords and values
+from typing import Callable
+
+
 class Entry:
-    def __init__(self, key, value):
+    """Defines a dictionary element that consists of keywords and values"""
+    def __init__(self, key: int, value: int) -> None:
+        """
+        Create an instance of Entry
+        :param key:int
+        :param value:int
+        """
         self.key = key
         self.value = value
 
 
-# Defining dictionary class
 class Dict:
+    """ Mutable dictionary based on hash-map, open address implementation """
+
     def __init__(self):
+        """Create an instance of dictionary"""
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
@@ -15,22 +25,34 @@ class Dict:
         # Dictionary size
         self.dict_size = 0
 
-    # getting value by key
-    def get(self, key):
+    def get(self, key: int) -> int:
+        """
+        getting value by key
+        :param key: int
+        :return: int
+        """
         if self.find(key) != -1:
             return self.hashTable[self.find(key)].value
         else:
             print("The key element does not exist")
 
-    # Is a member of a dictionary, 1 means existence, 0 means non-existence
-    def member(self, key):
+    def member(self, key: int) -> int:
+        """
+        Is a member of a dictionary, 1 means existence, 0 means non-existence
+        :param key: int
+        :return: int
+        """
         if self.find(key) != -1:
             return 1
         else:
             return 0
 
-    # Add a new element，use linear detection for conflicts
-    def add(self, item):
+    def add(self, item: 'Entry') -> None:
+        """
+        Add a new element，use linear detection for conflicts
+        :param item: 'Entry'
+        :return: None
+        """
         if item is not None:
             j = item.key % self.len
             if self.hashTable[j] is None:
@@ -48,8 +70,12 @@ class Dict:
                 self.hashTable[j] = item
                 self.dict_size += 1
 
-    # Find the hash table position of the element
-    def find(self, key):
+    def find(self, key: int) -> int:
+        """
+        Find the hash table position of the element
+        :param key: int
+        :return: int
+        """
         j = key % self.len
         if self.hashTable[j] is not None:
             if self.hashTable[j].key == key:
@@ -63,25 +89,34 @@ class Dict:
                         print("There is no element "
                               "with the value key in the dictionary")
                         return -1
-                        break
                 return j
         return -1
 
-    # Remove an element by key for dictionaries
-    def remove(self, key):
+    def remove(self, key: int) -> None:
+        """
+        Remove an element by key for dictionaries
+        :param key: int
+        :return: None
+        """
         if self.find(key) != -1:
             index = self.find(key)
             self.hashTable[index] = None
             self.dict_size -= 1
         else:
-            return "element doesn't exist"
+            print("element doesn't exist")
 
-    # Gets the size of the dictionary
-    def size(self):
+    def size(self) -> int:
+        """
+        Gets the size of the dictionary
+        :return: int
+        """
         return self.dict_size
 
-    # Conversion to built-in list
-    def to_list(self):
+    def to_list(self) -> dict[int, int]:
+        """
+        Conversion to built-in list
+        :return:dict[int,int]
+        """
         res = {}
         i = 0
         while i < self.len:
@@ -90,14 +125,22 @@ class Dict:
             i += 1
         return res
 
-    # Conversion from built-in list
-    def from_list(self, a):
+    def from_list(self, a: 'Dict') -> None:
+        """
+        Conversion from built-in list
+        :param a: Dict
+        :return: None
+        """
         for key, value in a.items():
             x = Entry(key, value)
             self.add(x)
 
-    # Filter dictionary by specific predicate
-    def filter(self, p):
+    def filter(self, p: Callable[[any], any]) -> None:
+        """
+        Filter dictionary by specific predicate
+        :param p:Callable[[any],any]
+        :return: None
+        """
         i = 0
         while i < self.len:
             if self.hashTable[i] is None:
@@ -109,8 +152,12 @@ class Dict:
                 else:
                     i += 1
 
-    # Map structure by specific function
-    def map(self, f):
+    def map(self, f: Callable[[any], any]) -> None:
+        """
+        Map structure by specific function
+        :param f: Callable[[any],any]
+        :return: None
+        """
         i = 0
         while i < self.len:
             if self.hashTable[i] is not None:
@@ -119,8 +166,13 @@ class Dict:
             else:
                 i += 1
 
-    # Reduce
-    def reduce(self, f, initial_state):
+    def reduce(self, f: Callable[[any], any], initial_state: int) -> int:
+        """
+        Reduce process elements and build a value by the function
+        :param f: Callable[[any],any]
+        :param initial_state: int
+        :return: int
+        """
         state = initial_state
         i = 0
         while i < self.len:
@@ -131,14 +183,19 @@ class Dict:
                 i += 1
         return state
 
-    # Empty the dictionary
-    def empty(self):
+    def empty(self) -> None:
+        """
+        Data structure should be a monoid and implement empty
+        :return: None
+        """
         self.hashTable = [None for i in range(self.len)]
 
-    # Join two dictionaries, If the key is repeated,
-    # the following dictionary element overrides
-    #  the preceding dictionary element
-    def concat(self, dict):
+    def concat(self, dict: 'Dict') -> 'Dict':
+        """
+        Data structure should be a monoid and implement concat
+        :param dict: Dict
+        :return: Dict
+        """
         self.dict_size = self.dict_size + dict.size()
         self.len = self.len + dict.len
         d1 = self.hashTable
@@ -151,25 +208,38 @@ class Dict:
                 self.add(y)
         return self
 
-    # Make dictionaries iterable
-    def __iter__(self):
+    def __iter__(self) -> 'Next':
+        """
+        Data structure should be an iterator
+        :return:Next
+        """
         return Next(self.hashTable)
 
 
-'''To define a multi-iteration type,
-__iter__ is required to return a new iterator,
-not self, that is, not its own iterator.'''
-
-
 class Next:
-    def __init__(self, hashTable):
+    """To define a multi-iteration type,
+    __iter__ is required to return a new iterator,
+    not self, that is, not its own iterator."""
+    def __init__(self, hashTable: list[int]) -> None:
+        """
+        Create an instance of Next
+        :param hashTable: list[int]
+        """
         self.hashTable = hashTable
         self.current = 0
 
-    def __iter__(self):
+    def __iter__(self) -> 'Next':
+        """
+        Implement iter(self).
+        :return: 'Next'
+        """
         return self
 
-    def __next__(self):
+    def __next__(self) -> 'Entry':
+        """
+        Implement next(self).
+        :return: 'Entry'
+        """
         if self.current < len(self.hashTable):
             x = self.current
             item = self.hashTable[x]
