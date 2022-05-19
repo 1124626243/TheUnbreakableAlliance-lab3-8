@@ -34,7 +34,7 @@ class Dict:
         """
         getting value by key
         :param key: optionalType
-        :return: int
+        :return: optionalType
         """
         if self.find(key) != -1:
             return self.hashTable[self.find(key)].value
