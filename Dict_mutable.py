@@ -1,14 +1,15 @@
-from typing import Callable
-from typing import Any
+from typing import Callable, Any, Optional, Union
+
+optionalType = Union[int, float]
 
 
 class Entry:
     """Defines a dictionary element that consists of keywords and values"""
-    def __init__(self, key: int, value: int) -> None:
+    def __init__(self, key: optionalType, value: optionalType) -> None:
         """
         Create an instance of Entry
-        :param key:int
-        :param value:int
+        :param key: optionalType
+        :param value: optionalType
         """
         self.key = key
         self.value = value
@@ -22,15 +23,15 @@ class Dict:
         # The length of the hashTable
         self.len = 1000
         # HashTable is a list of dictionaries to store
-        self.hashTable: list[Any] = [None for i in range(self.len)]
+        self.hashTable: list[Optional['Entry']] = [None for i in range(self.len)]
         # Dictionary size
         self.dict_size = 0
 
-    def get(self, key: int) -> Any:
+    def get(self, key: optionalType) -> optionalType:
         """
         getting value by key
-        :param key: int
-        :return: Any
+        :param key: optionalType
+        :return: int
         """
         if self.find(key) != -1:
             return self.hashTable[self.find(key)].value
@@ -38,10 +39,10 @@ class Dict:
             print("The key element does not exist")
             return -1
 
-    def member(self, key: int) -> int:
+    def member(self, key: optionalType) -> int:
         """
         Is a member of a dictionary, 1 means existence, 0 means non-existence
-        :param key: int
+        :param key: optionalType
         :return: int
         """
         if self.find(key) != -1:
@@ -49,10 +50,10 @@ class Dict:
         else:
             return 0
 
-    def add(self, item: Any) -> None:
+    def add(self, item: Optional['Entry']) -> None:
         """
         Add a new element，use linear detection for conflicts
-        :param item: Any
+        :param item: Optional['Entry']
         :return: None
         """
         if item is not None:
@@ -72,10 +73,10 @@ class Dict:
                 self.hashTable[j] = item
                 self.dict_size += 1
 
-    def find(self, key: int) -> int:
+    def find(self, key: optionalType) -> int:
         """
         Find the hash table position of the element
-        :param key: int
+        :param key: optionalType
         :return: int
         """
         j = key % self.len
@@ -94,10 +95,10 @@ class Dict:
                 return j
         return -1
 
-    def remove(self, key: int) -> None:
+    def remove(self, key: optionalType) -> None:
         """
         Remove an element by key for dictionaries
-        :param key: int
+        :param key: optionalType
         :return: None
         """
         if self.find(key) != -1:
@@ -114,10 +115,10 @@ class Dict:
         """
         return self.dict_size
 
-    def to_list(self) -> dict[int, int]:
+    def to_list(self) -> dict[optionalType, optionalType]:
         """
         Conversion to built-in list
-        :return:dict[int,int]
+        :return:dict[optionalType, optionalType]
         """
         res = {}
         i = 0
@@ -127,10 +128,10 @@ class Dict:
             i += 1
         return res
 
-    def from_list(self, a: dict[int, int]) -> None:
+    def from_list(self, a: dict[optionalType, optionalType]) -> None:
         """
         Conversion from built-in list
-        :param a: Dict
+        :param a: dict[optionalType, optionalType]
         :return: None
         """
         for key, value in a.items():
@@ -168,7 +169,7 @@ class Dict:
             else:
                 i += 1
 
-    def reduce(self, f: Callable[[Any, int], Any], initial_state: int) -> int:
+    def reduce(self, f: Callable[[Any, optionalType], Any], initial_state: optionalType) -> optionalType:
         """
         Reduce process elements and build a value by the function
         :param f: Callable[[Any, int], Any]
@@ -213,7 +214,7 @@ class Dict:
     def __iter__(self) -> 'Next':
         """
         Data structure should be an iterator
-        :return:Next
+        :return: Next
         """
         return Next(self.hashTable)
 
@@ -222,10 +223,10 @@ class Next:
     """To define a multi-iteration type,
     __iter__ is required to return a new iterator,
     not self, that is, not its own iterator."""
-    def __init__(self, hashTable: list[int]) -> None:
+    def __init__(self, hashTable: list[Optional['Entry']]) -> None:
         """
         Create an instance of Next
-        :param hashTable: list[int]
+        :param hashTable: list[Optional['Entry']
         """
         self.hashTable = hashTable
         self.current = 0
@@ -237,10 +238,10 @@ class Next:
         """
         return self
 
-    def __next__(self) -> int:
+    def __next__(self) -> 'Entry':
         """
         Implement next(self).
-        :return: int
+        :return: 'Entry'
         """
         if self.current < len(self.hashTable):
             x = self.current

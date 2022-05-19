@@ -63,6 +63,8 @@ This is lab1 report.
 
 ## Changelog
 
+- 19.05.2022 - 1
+- Fan Yuxin updated README and CI config. Add type hints and docstrings for all functions.
 - 08.05.2022 - 1
 - Fan Yuxin add `test_monoid_associativity(a)`,
 - Modify `test_monoid_identity(a)`,`concat(dict)`
