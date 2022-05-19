@@ -1,6 +1,6 @@
 from typing import Callable, Any, Optional, Union
 
-optionalType = Union[int, float]
+optionalType = Union[int]
 
 
 class Entry:
