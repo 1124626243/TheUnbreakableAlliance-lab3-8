@@ -10,7 +10,7 @@ This is lab3 report.
 
 - You need to implement simple Lisp-like language with the following construction:
 
->  >     – <expression> ::= <number> | <var-name> | <fun-call>
+> >     – <expression> ::= <number> | <var-name> | <fun-call>
 >  >
 >  >       – <number> ::= 1 | 2 | ...
 >   >
