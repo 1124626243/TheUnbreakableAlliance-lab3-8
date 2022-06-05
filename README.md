@@ -11,7 +11,7 @@ This is lab3 report.
 - You need to implement simple Lisp-like language with the following construction:
 
 >   >       – <expression> ::= <number> | <var-name> | <fun-call>
->   > 
+>   >
 >   >       – <number> ::= 1 | 2 | ...
 >   >
 >   >       – <var-name> ::= a, b, ...
@@ -20,7 +20,7 @@ This is lab3 report.
 >   >
 >   >       – (set <var-name> <expression>) – set variable value
 >   >
->   >       – (if <expression> <if-true-expression> 
+>   >       – (if <expression> <if-true-expression>
 >   >       <if-false-expression>), use 0 for false, and non-zero value for true
 >   >
 >   >       – (progn <expression> <expression> ...) – evaluate sequence of expression
@@ -29,6 +29,7 @@ This is lab3 report.
 >   >       – evaluate sequence of expression
 >   >
 >   >       – functions: print, +, -, +, /, =, <, >, and, or, not.
+
 - Variables storing in one global context.
 - Run-time error should be processed correctly.
 - You should use the default Python logging module to make the interpreter work transparent
