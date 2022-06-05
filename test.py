@@ -1,5 +1,6 @@
 import unittest
-from discrete_event import *
+from discrete_event import Sexp, Env
+import operator as op
 import math
 
 
