@@ -1,114 +1,47 @@
-# TheUnbreakableAlliance-lab1-8
+# TheUnbreakableAlliance-lab3-8
 
-This is lab1 report.
+This is lab3 report.
 
 ## Variant
 
-(8) Dictionary based on hash-map, open address
+(8) S-expression machine with global context
 
 ## laboratory work description
 
-• Add a new element  (lst.add(3))
-• Set an element with specific index / key (lst.set(1, 3)) if applicable.
-• Remove an element by (lst.remove(3)):
-
-- index for lists
-- key for dictionaries - value for sets value
-
-• Access:
-
-- size (lst.size())
-- is member (lst.member(3))
-- reverse (lst.reverse() (if applicable)
-
-• Conversion from/to built-in list :
-
-- from_list (lst.from_list([12, 99, 37]))
-- to_list (lst.to_list())
-
-• Filter data structure by specific predicate (lst.filter(is_even))
-• Map1 structure by specific function (lst.map(increment))
-• Reduce2 – process structure elements to build a return value by specific functions(lst.reduce(sum))
-• Data structure should be an iterator3 in Python style
-• Data structure should be a monoid and implement empty and concat methods
++ You need to implement simple Lisp-like language with the following construction:
+- <expression> ::= <number> | <var-name> | <fun-call>
+- <number> ::= 1 | 2 | ...
+- <var-name> ::= a, b, ...
+- <fun-call> ::= (<fun-or-statement-name> <expression> <expression> ...)
+- (set <var-name> <expression>) – set variable value
+- (if <expression> <if-true-expression> <if-false-expression>), use 0 for false, and nonzero value for true
+- (progn <expression> <expression> ...) – evaluate sequence of expression
+- (while <expression> <expression> <expression> ...) – evaluate sequence of expression
+- functions: print, +, -, +, /, =, <, >, and, or, not. • Input language is a string.
++ Variables storing in one global context.
++ Run-time error should be processed correctly.
++ You should use the default Python logging module to make the interpreter work transparent
 
 ## Project structure
 
-- `Dict_mutable.py` -- implementation of `Dict` class with `remove` 、`add` etc.
-- `Dict_mutable_test.py` -- unit and PBT tests for `Foo`.
+- `discrete_event.py` -- implementation of S-expression machine with global context.
+- `test.py` -- unit and PBT tests for `discrete_event.py`.
 
-## Features
-
-- map(f)
-- add(item)
-- find(key)
-- remove(key)
-- size( )
-- to_list( )
-- from_list(a)
-- filter(p)
-- map(f)
-- reduce(f, initial_state)
-- empty( )
-- concat(dict)
-- get(key)
-- member(key)
-- __next__( )
-- __iter__( )
 
 ## Contribution
 
-- Fan Yuxin (1124626243@qq.com) -- Dict_mutable.py
-- Wen Wenchao(285404190@qq.com) -- Dict_mutable.py
+- Fan Yuxin (1124626243@qq.com) -- discrete_event.py
+- Wen Wenchao(285404190@qq.com) -- test.py
 
 ## Changelog
 
-- 19.05.2022 - 1
-- Fan Yuxin updated README and CI config. Add type hints and docstrings for all functions.
-- 08.05.2022 - 1
-- Fan Yuxin add `test_monoid_associativity(a)`,
-- Modify `test_monoid_identity(a)`,`concat(dict)`
-- 05.05.2022 - 1
-- Fan Yuxin add `test_monoid_identity(a)`,
-- Remove dead code and commented code.
-- 24.04.2022 - 2
-- Wen Wenchao added `test_get()`, `test_member()`,
-- changed  `test_find()`, `test_remove()`.
-- 24.04.2022 - 1
-- Fan Yuxin add `get(key)`, `member(key)`,
-- change  `find(key)`, `remove(key)`,`from_list()`,`add(item)``concat(dict)`.
-- 19.04.2022 - 2
-- Wen Wenchao fixed `Dict_mutable_test.py`.
-- 19.04.2022 - 1
-- Fan Yuxin fixed `Dict_mutable.py`.
-- 13.04.2022 - 2
-- Wen Wenchao uploaded `Dict_mutable_test.py`.
-- 13.04.2022 - 1
-- Fan Yuxin uploaded `Dict_mutable.py`.
-- 11.04.2022 - 0
+- 05.06.2022 - 2
+- Wen Wenchao uploaded `test.py`.
+- 05.06.2022 - 1
+- Fan Yuxin uploaded `discrete_event.py`.
+- 05.06.2022 - 0
   - Initial
 
 ## Design notes
 
-We create an Entry class to represent an element in the dictionary.
-Hash maps are used to store and find elements and open addressing
-is used to handle conflicts. The internal hash table has a table length of 1000.
-
-### Advantages and disadvantages of unittest
-
-- Advantages：
-  - Support automated testing
-  - Secondary development is convenient
-  - Organize test cases together by class
-- Disadvantages：
-  - Must be written in TestCase subclass
-  - Must write test method
-  - Difficult to expand
-
-### Advantages and disadvantages of PBT tests
-
-- Advantages：
-  - Check with automatically generated input data to ensure enough test cases
-  - Allows developers to increase test coverage and effectively save time
-- Disadvantages：
-  - Not covering all examples
+We implement simple Lisp-like language:S-expression machine with global context
