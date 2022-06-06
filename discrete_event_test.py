@@ -4,7 +4,7 @@ import operator as op
 import math
 
 
-class SexpTest(unittest.TestCase):
+class TestSexp(unittest.TestCase):
 
     def test_parse(self):
         e = Sexp()
@@ -71,7 +71,7 @@ class SexpTest(unittest.TestCase):
         self.assertEqual(exp.eval(exp.parse('(not 1)')), 0)
 
 
-class EnvTest(unittest.TestCase):
+class TestEnv(unittest.TestCase):
     def test_find(self):
         e = Env()
         dict = {'+': op.add, '-': op.sub, '*': op.mul, '/': op.truediv}
@@ -85,7 +85,7 @@ class EnvTest(unittest.TestCase):
 
 
 class TestProcedure(unittest.TestCase):
-    def test(self):
+    def test_procedure(self):
         exp = Sexp()
         exp.eval(exp.parse('(define twice (lambda (x) (* 2 x)))'))
         self.assertEqual(exp.eval(exp.parse('(twice 5)')), 10)

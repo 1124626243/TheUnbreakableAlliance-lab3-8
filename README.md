@@ -37,7 +37,7 @@ This is lab3 report.
 ## Project structure
 
 - `discrete_event.py` -- implementation of S-expression machine with global context.
-- `test.py` -- unit and PBT tests for `discrete_event.py`.
+- `discrete_event_test.py` -- unit and PBT tests for `discrete_event.py`.
 
 ## Contribution
 
@@ -47,7 +47,7 @@ This is lab3 report.
 ## Changelog
 
 - 05.06.2022 - 2
-- Wen Wenchao uploaded `test.py`.
+- Wen Wenchao uploaded `discrete_event_test.py`.
 - 05.06.2022 - 1
 - Fan Yuxin uploaded `discrete_event.py`.
 - 05.06.2022 - 0
