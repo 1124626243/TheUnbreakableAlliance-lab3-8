@@ -42,7 +42,7 @@ This is lab3 report.
 ## Contribution
 
 - Fan Yuxin (1124626243@qq.com) -- discrete_event.py
-- Wen Wenchao(285404190@qq.com) -- test.py
+- Wen Wenchao(285404190@qq.com) -- discrete_event_test.py
 
 ## Changelog
 
